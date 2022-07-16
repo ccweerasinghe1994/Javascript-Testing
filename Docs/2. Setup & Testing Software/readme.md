@@ -11,16 +11,20 @@ we are going to use vitest
 
 ## Jest & Vitest
 
+we can use either jest or vitest to test our code
+
 ## Installing Vitest
+
+```bash
+npm install -g vitest
+```
+
+or we can add as dependency in package.json
+
+```bash
+npm --save-dev vitest
+```
 
 ## Course Project Setup
 
-![image](./../img/11.png)
-![image](./../img/12.png)
-![image](./../img/13.png)
-![image](./../img/14.png)
-![image](./../img/15.png)
-![image](./../img/16.png)
-![image](./../img/17.png)
-![image](./../img/18.png)
-![image](./../img/19.png)
+course project is added have to cd into the project and do npm install
