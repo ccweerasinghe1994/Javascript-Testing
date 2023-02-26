@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "vitest --config ./vitest.config.ts --run --reporter verbose",
+    "test": "vitest --run --reporter verbose",
     "test:watch": "vitest",
     "start": "http-server -c-1"
   },
