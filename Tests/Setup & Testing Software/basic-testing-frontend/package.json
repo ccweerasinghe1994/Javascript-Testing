@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "vitest --config ./vitest.config.ts --run --reporter verbose",
     "test:watch": "vitest",
@@ -14,6 +15,6 @@
   "devDependencies": {
     "http-server": "^14.1.0",
     "install": "^0.13.0",
-    "vitest": "^0.9.0"
+    "vitest": "^0.29.1"
   }
 }

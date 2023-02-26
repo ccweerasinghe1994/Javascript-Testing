@@ -13,9 +13,9 @@
 
 - [Testing Basics](Docs/3.%20Testing%20Basics/readme.md)
 
-## Writing Good Tests
 
-## Integration Tests
+## [Writing Good Tests](Docs%2F1.%20Getting%20Started%2Freadme.md)
+## [Integration Tests]()
 
 ## Advanced Testing Concepts
 
