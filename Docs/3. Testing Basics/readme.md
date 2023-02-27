@@ -111,3 +111,132 @@ so let's fix our code
 now our test are passing
 
 ![Alt text](../img/16.png)
+
+## 9. Demo Writing More Tests
+
+- writing test is a iterative process.
+- when we are writing code we will think of writing new test cases for our code.
+- when we have more understanding about our code we can write more meaning fool tests.
+- there is no wright or wrong answers when it comes to tests.
+- we should all ways be open to add or remove tests
+
+let's add more tests
+
+```ts
+it('should yield 0 if emty array is provided', () => {
+ const inputs = [];
+
+ const result = add(inputs);
+
+ expect(result).toBe(0);
+});
+
+it('should throw and error if we pass no argument to the function', () => {
+ const result = add();
+});
+```
+
+![Alt text](../img/17.png)
+
+## Testing For Errors
+
+let's fix the issue
+
+```ts
+it('should throw and error if we pass no argument to the function', () => {
+ const resultFn = () => {
+  add();
+ };
+
+ expect(resultFn).toThrow();
+ // by using not in any test we can check for opposite
+ // expect(resultFn).not.toThrow();
+});
+
+```
+
+![Alt text](../img/18.png)
+
+## Demo Adding More Tests
+
+```ts
+it('should trow error we multiple argument is provided instead of array', () => {
+ const num1 = 1;
+ const num2 = 3;
+
+ const resultFn = () => add(num1, num2);
+
+ expect(resultFn).toThrow();
+});
+
+```
+
+![Alt text](../img/19.png)
+
+## Testing For Thrown Errors & Error Messages
+
+```ts
+it('should trow error we multiple argument is provided instead of array', () => {
+ const num1 = 1;
+ const num2 = 3;
+
+ const resultFn = () => add(num1, num2);
+ // here we can add a regular expression to find the correct error message
+ expect(resultFn).toThrow(/numbers is not iterable/);
+});
+```
+
+![Alt text](../img/20.png)
+
+## Exercise Problem
+
+let's write tests for the function
+
+```ts
+export function transformToNumber(value: string | number) {
+ return +value;
+}
+```
+
+## Exercise Solution
+
+```ts
+import { expect, it } from 'vitest';
+import { transformToNumber } from './numbers';
+it('should convert a string input into number', () => {
+ const input = '12';
+ const expectedResult = +input;
+
+ const result = transformToNumber(input);
+
+ expect(result).toBe(expectedResult);
+ expect(result).toBeTypeOf('number');
+});
+
+it('should return a number when we pass a number as well', () => {
+ const input = 12;
+ const expectedResult = input;
+
+ const result = transformToNumber(input);
+
+ expect(result).toBe(expectedResult);
+});
+
+it('should yield NaN for nun transferable parameters', () => {
+ const input = 'invalid';
+
+ const result = transformToNumber(input);
+ expect(result).toBeNaN();
+});
+
+```
+
+![Alt text](../img/21.png)
+
+## Tests With Multiple Assertions (Multiple Expectations)
+
+## More Practice
+
+## Introducing Test Suites
+
+## Adding Tests To Frontend & Backend Projects
