@@ -235,7 +235,105 @@ it('should yield NaN for nun transferable parameters', () => {
 
 ## Tests With Multiple Assertions (Multiple Expectations)
 
+```ts
+it('should yield NaN for nun transferable parameters', () => {
+ const input = 'invalid';
+ const input2 = {};
+ const result = transformToNumber(input);
+ const result2 = transformToNumber(input2);
+ expect(result).toBeNaN();
+ expect(result2).toBeNaN();
+});
+```
+
+here when we are using typescript we will get an error when we try to pass wrong parameter type
+
 ## More Practice
+
+```ts
+export function validateStringNotEmpty(value: string) {
+ if (value.trim().length === 0) {
+  throw new Error('Invalid input - must not be empty.');
+ }
+}
+
+export function validateNumber(number: number) {
+ if (isNaN(number) || typeof number !== 'number') {
+  throw new Error('Invalid number input.');
+ }
+}
+```
+
+```ts
+import { it, expect } from 'vitest';
+
+import { validateNumber, validateStringNotEmpty } from './validation';
+
+it('should throw an error, if an empty string is provided', () => {
+ const input = '';
+ const validationFn = () => validateStringNotEmpty(input);
+ expect(validationFn).toThrow();
+});
+
+it('should throw an error with a message that contains a reason (must not be empty)', () => {
+ const input = '';
+ const validationFn = () => validateStringNotEmpty(input);
+ expect(validationFn).toThrow(/must not be empty/);
+});
+
+it('should throw an error if a long string of blanks is provided', () => {
+ const input = '';
+ const validationFn = () => validateStringNotEmpty(input);
+ expect(validationFn).toThrow();
+});
+
+it('should throw an error if any other value than a string is provided', () => {
+ const inputNum = 1;
+ const inputBool = true;
+ const inputObj = {};
+
+ const validationFnNum = () => validateStringNotEmpty(inputNum);
+ const validationFnBool = () => validateStringNotEmpty(inputBool);
+ const validationFnObj = () => validateStringNotEmpty(inputObj);
+
+ expect(validationFnNum).toThrow();
+ expect(validationFnBool).toThrow();
+ expect(validationFnObj).toThrow();
+});
+
+it('should not throw an error, if a non-empty string is provided', () => {
+ const input = 'valid';
+ const validationFn = () => validateStringNotEmpty(input);
+ expect(validationFn).not.toThrow();
+});
+
+it('should throw an error if NaN is provided', () => {
+ const input = NaN;
+ const validationFn = () => validateNumber(input);
+ expect(validationFn).toThrow();
+});
+
+it('should throw an error with a message that contains a reason (invalid number)', () => {
+ const input = NaN;
+ const validationFn = () => validateNumber(input);
+ expect(validationFn).toThrow(/Invalid number/);
+});
+
+it('should throw an error if a non-numeric value is provided', () => {
+ const input = '1';
+ const validationFn = () => validateNumber(input);
+ expect(validationFn).toThrow();
+});
+
+it('should not throw an error, if a number is provided', () => {
+ const input = 1;
+ const validationFn = () => validateNumber(input);
+ expect(validationFn).not.toThrow();
+});
+
+```
+
+![Alt text](../img/22.png)
 
 ## Introducing Test Suites
 
